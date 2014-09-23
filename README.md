@@ -1,2 +1,2 @@
-Alamofire-SwiftJSON
+Alamofire-SwiftyJSON
 ===================
