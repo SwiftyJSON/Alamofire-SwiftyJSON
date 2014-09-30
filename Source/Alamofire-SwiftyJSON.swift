@@ -45,12 +45,10 @@ extension Alamofire.Request {
                 
                 if error != nil {
                     responseJSON = SwiftyJSON.JSON.Null(error)
+                } else if object != nil {
+                    responseJSON = SwiftyJSON.JSON(object: object!)
                 } else {
-                    if object != nil {
-                        responseJSON = SwiftyJSON.JSON(object: object)
-                    } else {
-                        responseJSON = SwiftyJSON.JSON.Null(nil)
-                    }
+                    responseJSON = SwiftyJSON.JSON.Null(nil)
                 }
                 
                 dispatch_async(queue ?? dispatch_get_main_queue(), {
