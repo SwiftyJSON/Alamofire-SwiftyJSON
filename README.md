@@ -5,7 +5,7 @@ Easy way to use both [Alamofire](https://github.com/Alamofire/Alamofire) and [Sw
 ## Requirements
 
 - iOS 7.0+ / Mac OS X 10.9+
-- Xcode 6.0
+- Xcode 6.1
 
 ## Usage
 
