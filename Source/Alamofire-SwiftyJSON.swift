@@ -49,7 +49,7 @@ extension Request {
                 }
                 
                 dispatch_async(queue ?? dispatch_get_main_queue(), {
-                    completionHandler(self.request, self.response, responseJSON, nil)
+                    completionHandler(self.request, self.response, responseJSON, error)
                 })
             })
         })
