@@ -11,9 +11,9 @@ Easy way to use both [Alamofire](https://github.com/Alamofire/Alamofire) and [Sw
 
 ```swift
 Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
-         .responseSwiftyJSON { (request, response, json, error) in
+         .responseSwiftyJSON({ (request, response, json, error) in
                      println(json)
                      println(error)
-                   }
+                  })
 
 ```
