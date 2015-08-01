@@ -42,10 +42,10 @@ extension Request {
             dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), {
                 
                 var responseJSON: JSON
-                if error != nil || object == nil{
-                    responseJSON = JSON.nullJSON
+                if let object: AnyObject = object {
+                    responseJSON = SwiftyJSON.JSON(object)
                 } else {
-                    responseJSON = SwiftyJSON.JSON(object!)
+                    responseJSON = JSON.nullJSON
                 }
                 
                 dispatch_async(queue ?? dispatch_get_main_queue(), {
