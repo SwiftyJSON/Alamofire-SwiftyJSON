@@ -11,4 +11,5 @@ Pod::Spec.new do |s|
   s.ios.deployment_target = "8.0"
   s.source   = { :git => "https://github.com/SwiftyJSON/Alamofire-SwiftyJSON.git", :tag => "1.1.0"}
   s.source_files = "Source/*.swift"
+  s.framework    = ['Alamofire','SwiftyJSON']
 end
