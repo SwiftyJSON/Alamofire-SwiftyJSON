@@ -4,8 +4,18 @@ Easy way to use both [Alamofire](https://github.com/Alamofire/Alamofire) and [Sw
 
 ## Requirements
 
-- iOS 7.0+ / Mac OS X 10.9+
-- Xcode 6.1
+- iOS 8.0+ / Mac OS X 10.9+
+- Xcode 7.0
+
+## Install
+
+```
+source 'https://github.com/CocoaPods/Specs.git'
+platform :ios, '8.0'
+use_frameworks!
+
+pod 'Alamofire', :git => 'https://github.com/SwiftyJSON/Alamofire-SwiftyJSON.git', :branch => 'swift-2.0'
+```
 
 ## Usage
 
