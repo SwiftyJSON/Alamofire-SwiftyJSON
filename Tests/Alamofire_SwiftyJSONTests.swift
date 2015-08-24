@@ -22,7 +22,7 @@ class Alamofire_SwiftyJSONTests: XCTestCase {
             expectation.fulfill()
             XCTAssertNotNil(request, "request should not be nil")
             XCTAssertNotNil(response, "response should not be nil")
-            XCTAssertNil(error, "error should be nil")
+            XCTAssertTrue(error == nil, "result error should be nil")
             XCTAssertEqual(responseJSON["args"], SwiftyJSON.JSON(["foo": "bar"] as NSDictionary), "args should be equal")
         })
         waitForExpectationsWithTimeout(10) { (error) in
