@@ -23,8 +23,8 @@ pod 'Alamofire-SwiftyJSON'
 ```swift
 Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
          .responseSwiftyJSON({ (request, response, json, error) in
-                     println(json)
-                     println(error)
+                     print(json)
+                     print(error)
                   })
 
 ```
