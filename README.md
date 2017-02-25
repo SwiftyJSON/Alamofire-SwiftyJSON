@@ -1,30 +1,26 @@
-#Alamofire-SwiftyJSON
+#Alamofire-SwiftyJSON ![](https://travis-ci.org/SwiftyJSON/Alamofire-SwiftyJSON.svg?branch=master)
 
-Easy way to use both [Alamofire](https://github.com/Alamofire/Alamofire) and [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON)
+An extension to make serializing [Alamofire](https://github.com/Alamofire/Alamofire)'s response with [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) easily.
 
 ## Requirements
 
 - iOS 8.0+ / Mac OS X 10.9+
-- Xcode 7.0
+- Xcode 8.0
 
 ## Install
 
-```
-source 'https://github.com/CocoaPods/Specs.git'
-platform :ios, '8.0'
-use_frameworks!
-
+```ruby
 pod 'Alamofire-SwiftyJSON'
-
 ```
 
 ## Usage
 
 ```swift
-Alamofire.request(.GET, "http://httpbin.org/get", parameters: ["foo": "bar"])
-         .responseSwiftyJSON({ (request, response, json, error) in
-                     println(json)
-                     println(error)
+Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
+         .responseSwiftyJSON { dataResponse in
+                     print(dataResponse.request)
+                     print(dataResponse.response)
+                     print(dataResponse.error)
+                     print(dataResponse.value)
                   })
-
 ```
