@@ -59,7 +59,7 @@ extension DataRequest {
         -> DataResponseSerializer<JSON>
     {
         return DataResponseSerializer { _, response, data, error in
-            return Request.serializeResponseSwiftyJSON(options: options, response: response, data: data, error: error)
+			return Request.serializeResponseSwiftyJSON(options: options, response: response, data: data, error: error)
         }
     }
 

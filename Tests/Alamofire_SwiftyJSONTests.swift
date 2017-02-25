@@ -6,7 +6,6 @@
 //  Copyright (c) 2014年 SwiftJSON. All rights reserved.
 //
 
-import UIKit
 import XCTest
 import Alamofire
 import SwiftyJSON
@@ -14,20 +13,19 @@ import AlamofireSwiftyJSON
 
 class Alamofire_SwiftyJSONTests: XCTestCase {
     
-    func testJSONResponse() {
+    func testGETRequestJSONResponse() {
         let URL = "http://httpbin.org/get"
-        let expectation = expectationWithDescription("\(URL)")
-
-        Alamofire.request(.GET, URL, parameters: ["foo": "bar"]).responseSwiftyJSON({(request, response, responseJSON, error) in
-            expectation.fulfill()
-            XCTAssertNotNil(request, "request should not be nil")
-            XCTAssertNotNil(response, "response should not be nil")
-            XCTAssertTrue(error == nil, "result error should be nil")
-            XCTAssertEqual(responseJSON["args"], SwiftyJSON.JSON(["foo": "bar"] as NSDictionary), "args should be equal")
-        })
-        waitForExpectationsWithTimeout(10) { (error) in
-            XCTAssertNil(error, "\(error)")
+        let parameters: Parameters = ["foo": "bar"]
+        let expect = expectation(description: "responseSwiftyJSON method should work")
+        Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
+            .validate()
+            .responseSwiftyJSON { response in
+                XCTAssertNotNil(response.request, "request should not be nil")
+                XCTAssertNotNil(response.response, "response should not be nil")
+                XCTAssertNil(response.error, "result error should be nil")
+                XCTAssertEqual(response.value?["args"], SwiftyJSON.JSON(["foo": "bar"] as NSDictionary), "args should be equal")
+                expect.fulfill()
         }
+        waitForExpectations(timeout: 10.0, handler: nil)
     }
-    
 }
