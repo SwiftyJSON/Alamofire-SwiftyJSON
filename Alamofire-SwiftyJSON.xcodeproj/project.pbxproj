@@ -168,7 +168,7 @@
 		};
 		A8A2DBC21A2329CE00AF9EFC /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
+			buildActionMask = 12;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
@@ -177,7 +177,7 @@
 				A8A2DBC51A2329E700AF9EFC /* AlamofireSwiftyJSON.framework in Copy Frameworks */,
 			);
 			name = "Copy Frameworks";
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
