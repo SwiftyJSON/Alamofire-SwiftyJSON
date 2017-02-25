@@ -2,4 +2,4 @@ language: objective-c
 osx_image: xcode8.2
 xcode_sdk: iphonesimulator10.0
 script:
-- xcodebuild -project Alamofire-SwiftyJSON.xcodeproj -scheme "AlamofireSwiftyJSON" -destination "platform=iOS Simulator,name=iPhone 6" build-for-testing test | xcpretty
+- set -o pipefail && xcodebuild -project Alamofire-SwiftyJSON.xcodeproj -scheme "AlamofireSwiftyJSON" -destination "id=22FA2149-1241-469C-BF6D-462D3837DB72" build-for-testing test | xcpretty
