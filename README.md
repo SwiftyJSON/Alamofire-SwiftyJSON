@@ -1,4 +1,4 @@
-#Alamofire-SwiftyJSON ![](https://travis-ci.org/SwiftyJSON/Alamofire-SwiftyJSON.svg?branch=master)
+# Alamofire-SwiftyJSON ![](https://travis-ci.org/SwiftyJSON/Alamofire-SwiftyJSON.svg?branch=master)
 
 An extension to make serializing [Alamofire](https://github.com/Alamofire/Alamofire)'s response with [SwiftyJSON](https://github.com/SwiftyJSON/SwiftyJSON) easily.
 
