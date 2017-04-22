@@ -10,7 +10,7 @@ An extension to make serializing [Alamofire](https://github.com/Alamofire/Alamof
 ## Install
 
 ```ruby
-pod 'Alamofire-SwiftyJSON'
+pod 'AlamofireSwiftyJSON'
 ```
 
 ## Usage
