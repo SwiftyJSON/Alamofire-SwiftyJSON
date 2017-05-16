@@ -9,8 +9,14 @@ An extension to make serializing [Alamofire](https://github.com/Alamofire/Alamof
 
 ## Install
 
+CocoaPods:
 ```ruby
 pod 'Alamofire-SwiftyJSON'
+```
+
+Carthage:
+```
+github "SwiftyJSON/Alamofire-SwiftyJSON" "master"
 ```
 
 ## Usage
