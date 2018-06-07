@@ -34,6 +34,9 @@ github "SwiftyJSON/Alamofire-SwiftyJSON" "master"
 ```
 
 ## Usage
+```swift
+import AlamofireSwiftyJSON
+```
 
 ```swift
 Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
