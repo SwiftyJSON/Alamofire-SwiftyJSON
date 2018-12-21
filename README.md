@@ -35,7 +35,7 @@ github "SwiftyJSON/Alamofire-SwiftyJSON" "master"
 
 ## Usage
 ```swift
-import AlamofireSwiftyJSON
+import Alamofire_SwiftyJSON
 ```
 
 ```swift
