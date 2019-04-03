@@ -1,7 +1,6 @@
 language: objective-c
 osx_image: xcode10
 xcode_sdk: iphonesimulator12.0
-env:
-  - PLATFORM="ios" SCHEME="AlamofireSwiftyJSON" DESTINATION="platform=iOS Simulator,name=iPhone 6"
 script:
-  - set -o pipefail && xcodebuild -project Alamofire-SwiftyJSON.xcodeproj -scheme $SCHEME -destination "$DESTINATION" build-for-testing test | xcpretty
+- set -o pipefail
+- travis_retry xcodebuild -project Alamofire-SwiftyJSON.xcodeproj -scheme "AlamofireSwiftyJSON" -destination "platform=iOS Simulator,name=iPhone 6" build-for-testing test | xcpretty
