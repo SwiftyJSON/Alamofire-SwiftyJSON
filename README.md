@@ -6,12 +6,15 @@ An extension to make serializing [Alamofire](https://github.com/Alamofire/Alamof
 
 ⚠️ **To use with Swift 4.x please ensure you are using >= `3.0.0`** ⚠️
 
+⚠️ **To use with Swift 5.x please ensure you are using >= `5.0.0`** ⚠️
+
 ## Swift version
 
 Alamofire-SwiftyJSON | Swift version | Alamofire | SwiftyJSON
 -------------        | --------------| ----------| ----------
 2.x                  | Swift 3.x     |    4.x    |  3.x
 3.x                  | Swift 4.x     |    4.5.x  |  4.x
+5.x                  | Swift 5.x     |    5.x    |  5.x
 
 ## Requirements
 
@@ -39,7 +42,7 @@ import Alamofire_SwiftyJSON
 ```
 
 ```swift
-Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
+AF.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
          .responseSwiftyJSON { dataResponse in
                      print(dataResponse.request)
                      print(dataResponse.response)
