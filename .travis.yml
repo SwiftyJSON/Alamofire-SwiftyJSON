@@ -1,6 +1,9 @@
-language: objective-c
-osx_image: xcode9
+os: osxa
+osx_image: xcode10.2
 xcode_sdk: iphonesimulator10.0
+branches:
+  only:
+    - master
 env:
   - PLATFORM="ios" SCHEME="AlamofireSwiftyJSON" DESTINATION="platform=iOS Simulator,name=iPhone SE,OS=10.0"
 script:

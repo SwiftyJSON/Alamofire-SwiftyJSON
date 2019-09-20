@@ -17,7 +17,7 @@ class Alamofire_SwiftyJSONTests: XCTestCase {
         let URL = "http://httpbin.org/get"
         let parameters: Parameters = ["foo": "bar"]
         let expect = expectation(description: "responseSwiftyJSON method should work")
-        Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseSwiftyJSON { response in
                 XCTAssertNotNil(response.request, "request should not be nil")
