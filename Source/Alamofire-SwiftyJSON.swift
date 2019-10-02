@@ -7,11 +7,10 @@
 //
 
 import Foundation
-
 import Alamofire
 import SwiftyJSON
 
-// MARK: - Request for Swift JSON
+private let emptyDataStatusCodes: Set<Int> = [204, 205]
 
 extension Request {
     /// Returns a SwiftyJSON object contained in a result type constructed from the response data using `JSONSerialization`
@@ -27,12 +26,15 @@ extension Request {
         options: JSONSerialization.ReadingOptions,
         response: HTTPURLResponse?,
         data: Data?,
-        error: Error?)
-        -> Result<JSON>
-    {
-        guard error == nil else { return .failure(error!) }
+        error: Error?
+    ) -> Result<JSON> {
+        if let error = error {
+            return .failure(error)
+        }
 
-        if let response = response, emptyDataStatusCodes.contains(response.statusCode) { return .success(JSON.null) }
+        if let response = response, emptyDataStatusCodes.contains(response.statusCode) {
+            return .success(JSON.null)
+        }
 
         guard let validData = data, validData.count > 0 else {
             return .failure(AFError.responseSerializationFailed(reason: .inputDataNilOrZeroLength))
@@ -55,11 +57,10 @@ extension DataRequest {
     ///
     /// - returns: A JSON object response serializer.
     public static func swiftyJSONResponseSerializer(
-        options: JSONSerialization.ReadingOptions = .allowFragments)
-        -> DataResponseSerializer<JSON>
-    {
+        options: JSONSerialization.ReadingOptions = .allowFragments
+    ) -> DataResponseSerializer<JSON> {
         return DataResponseSerializer { _, response, data, error in
-			return Request.serializeResponseSwiftyJSON(options: options, response: response, data: data, error: error)
+            return Request.serializeResponseSwiftyJSON(options: options, response: response, data: data, error: error)
         }
     }
 
@@ -73,15 +74,12 @@ extension DataRequest {
     public func responseSwiftyJSON(
         queue: DispatchQueue? = nil,
         options: JSONSerialization.ReadingOptions = .allowFragments,
-        completionHandler: @escaping (DataResponse<JSON>) -> Void)
-        -> Self
-    {
-        return response(
+        completionHandler: @escaping (DataResponse<JSON>) -> Void
+    ) -> Self {
+        return self.response(
             queue: queue,
             responseSerializer: DataRequest.swiftyJSONResponseSerializer(options: options),
             completionHandler: completionHandler
         )
     }
 }
-
-private let emptyDataStatusCodes: Set<Int> = [204, 205]
