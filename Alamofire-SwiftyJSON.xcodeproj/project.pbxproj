@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		195172592344A8B4002D4C23 /* Alamofire-SwiftyJSON.podspec in Resources */ = {isa = PBXBuildFile; fileRef = 195172582344A8B4002D4C23 /* Alamofire-SwiftyJSON.podspec */; };
+		1951725C2344A93F002D4C23 /* .travis.yml in Resources */ = {isa = PBXBuildFile; fileRef = 1951725A2344A93E002D4C23 /* .travis.yml */; };
+		1951725D2344A93F002D4C23 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 1951725B2344A93F002D4C23 /* README.md */; };
 		4FCF8BE87520DCAB10B5042B /* Pods_AlamofireSwiftyJSON.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F7BEF49FE829BEA6F20DE444 /* Pods_AlamofireSwiftyJSON.framework */; };
 		A8A2DBC51A2329E700AF9EFC /* AlamofireSwiftyJSON.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A8AFB70F19D1401D0070765E /* AlamofireSwiftyJSON.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		A8AFB71519D1401D0070765E /* Alamofire-SwiftyJSON.h in Headers */ = {isa = PBXBuildFile; fileRef = A8AFB71419D1401D0070765E /* Alamofire-SwiftyJSON.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,6 +54,9 @@
 
 /* Begin PBXFileReference section */
 		032B55364607D4459C7B13CF /* Pods_AlamofireSwiftyJSONTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_AlamofireSwiftyJSONTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		195172582344A8B4002D4C23 /* Alamofire-SwiftyJSON.podspec */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = "Alamofire-SwiftyJSON.podspec"; sourceTree = "<group>"; };
+		1951725A2344A93E002D4C23 /* .travis.yml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.yaml; path = .travis.yml; sourceTree = "<group>"; };
+		1951725B2344A93F002D4C23 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		24D9421C868DAF774A3847BF /* Pods-AlamofireSwiftyJSONTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlamofireSwiftyJSONTests.debug.xcconfig"; path = "Target Support Files/Pods-AlamofireSwiftyJSONTests/Pods-AlamofireSwiftyJSONTests.debug.xcconfig"; sourceTree = "<group>"; };
 		2C3409D07689C0A7F179C2FC /* Pods-AlamofireSwiftyJSONTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlamofireSwiftyJSONTests.release.xcconfig"; path = "Target Support Files/Pods-AlamofireSwiftyJSONTests/Pods-AlamofireSwiftyJSONTests.release.xcconfig"; sourceTree = "<group>"; };
 		6973684C3819B7DFD7672ECA /* Pods-AlamofireSwiftyJSON.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AlamofireSwiftyJSON.debug.xcconfig"; path = "Target Support Files/Pods-AlamofireSwiftyJSON/Pods-AlamofireSwiftyJSON.debug.xcconfig"; sourceTree = "<group>"; };
@@ -97,6 +103,9 @@
 		A8AFB70519D1401D0070765E = {
 			isa = PBXGroup;
 			children = (
+				1951725A2344A93E002D4C23 /* .travis.yml */,
+				1951725B2344A93F002D4C23 /* README.md */,
+				195172582344A8B4002D4C23 /* Alamofire-SwiftyJSON.podspec */,
 				A8AFB71119D1401D0070765E /* Source */,
 				A8AFB71B19D1401D0070765E /* Tests */,
 				A8AFB71019D1401D0070765E /* Products */,
@@ -259,6 +268,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1951725D2344A93F002D4C23 /* README.md in Resources */,
+				1951725C2344A93F002D4C23 /* .travis.yml in Resources */,
+				195172592344A8B4002D4C23 /* Alamofire-SwiftyJSON.podspec in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

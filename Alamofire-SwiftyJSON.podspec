@@ -5,7 +5,8 @@ Pod::Spec.new do |s|
   s.homepage    = "https://github.com/SwiftyJSON/Alamofire-SwiftyJSON"
   s.license     = { :type => "MIT" }
   s.authors     = { "tangplin" => "tangplin@gmail.com" }
-
+  
+  s.swift_version = '5.1'
   s.requires_arc = true
   s.osx.deployment_target = "10.11"
   s.ios.deployment_target = "9.0"
