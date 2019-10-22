@@ -5,6 +5,6 @@ branches:
   only:
     - master
 env:
-  - PLATFORM="ios" SCHEME="AlamofireSwiftyJSON" DESTINATION="platform=iOS Simulator,name=iPhone XS Max,OS=13.0"
+  - PLATFORM="ios" SCHEME="AlamofireSwiftyJSON" DESTINATION="platform=iOS Simulator,name=iPhone 8,OS=13.0"
 script:
   - set -o pipefail && xcodebuild -project Alamofire-SwiftyJSON.xcodeproj -scheme $SCHEME -destination "$DESTINATION" build-for-testing test | xcpretty
