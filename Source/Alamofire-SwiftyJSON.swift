@@ -1,87 +1,70 @@
-//
-//  AlamofireSwiftyJSON.swift
-//  AlamofireSwiftyJSON
-//
-//  Created by Pinglin Tang on 14-9-22.
-//  Copyright (c) 2014 SwiftyJSON. All rights reserved.
-//
-
-import Foundation
-
 import Alamofire
+import Foundation
 import SwiftyJSON
 
-// MARK: - Request for Swift JSON
+public final class SwiftyJSONResponseSerializer: ResponseSerializer {
+    public let dataPreprocessor: DataPreprocessor
+    public let emptyResponseCodes: Set<Int>
+    public let emptyRequestMethods: Set<HTTPMethod>
+    /// `JSONSerialization.ReadingOptions` used when serializing a response.
+    public let options: JSONSerialization.ReadingOptions
 
-extension Request {
-    /// Returns a SwiftyJSON object contained in a result type constructed from the response data using `JSONSerialization`
-    /// with the specified reading options.
+    /// Creates an instance with the provided values.
     ///
-    /// - parameter options:  The JSON serialization reading options. Defaults to `.allowFragments`.
-    /// - parameter response: The response from the server.
-    /// - parameter data:     The data returned from the server.
-    /// - parameter error:    The error already encountered if it exists.
-    ///
-    /// - returns: The result data type.
-    public static func serializeResponseSwiftyJSON(
-        options: JSONSerialization.ReadingOptions,
-        response: HTTPURLResponse?,
-        data: Data?,
-        error: Error?)
-        -> Result<JSON>
+    /// - Parameters:
+    ///   - dataPreprocessor:    `DataPreprocessor` used to prepare the received `Data` for serialization.
+    ///   - emptyResponseCodes:  The HTTP response codes for which empty responses are allowed. `[204, 205]` by default.
+    ///   - emptyRequestMethods: The HTTP request methods for which empty responses are allowed. `[.head]` by default.
+    ///   - options:             The options to use. `.allowFragments` by default.
+    public init(dataPreprocessor: DataPreprocessor = SwiftyJSONResponseSerializer.defaultDataPreprocessor,
+                emptyResponseCodes: Set<Int> = SwiftyJSONResponseSerializer.defaultEmptyResponseCodes,
+                emptyRequestMethods: Set<HTTPMethod> = SwiftyJSONResponseSerializer.defaultEmptyRequestMethods,
+                options: JSONSerialization.ReadingOptions = .allowFragments)
     {
-        guard error == nil else { return .failure(error!) }
+        self.dataPreprocessor = dataPreprocessor
+        self.emptyResponseCodes = emptyResponseCodes
+        self.emptyRequestMethods = emptyRequestMethods
+        self.options = options
+    }
 
-        if let response = response, emptyDataStatusCodes.contains(response.statusCode) { return .success(JSON.null) }
+    public func serialize(request: URLRequest?, response: HTTPURLResponse?, data: Data?, error: Error?) throws -> JSON {
+        guard error == nil else { throw error! }
 
-        guard let validData = data, validData.count > 0 else {
-            return .failure(AFError.responseSerializationFailed(reason: .inputDataNilOrZeroLength))
+        guard var data = data, !data.isEmpty else {
+            guard emptyResponseAllowed(forRequest: request, response: response) else {
+                throw AFError.responseSerializationFailed(reason: .inputDataNilOrZeroLength)
+            }
+
+            return JSON(booleanLiteral: false)
         }
 
+        data = try dataPreprocessor.preprocess(data)
+
         do {
-            let json = try JSONSerialization.jsonObject(with: validData, options: options)
-            return .success(JSON(json))
+            let json = try JSONSerialization.jsonObject(with: data, options: options)
+            return JSON(json)
         } catch {
-            return .failure(AFError.responseSerializationFailed(reason: .jsonSerializationFailed(error: error)))
+            throw AFError.responseSerializationFailed(reason: .jsonSerializationFailed(error: error))
         }
     }
 }
 
 extension DataRequest {
-    /// Creates a response serializer that returns a SwiftyJSON object result type constructed from the response data using
-    /// `JSONSerialization` with the specified reading options.
-    ///
-    /// - parameter options: The JSON serialization reading options. Defaults to `.allowFragments`.
-    ///
-    /// - returns: A JSON object response serializer.
-    public static func swiftyJSONResponseSerializer(
-        options: JSONSerialization.ReadingOptions = .allowFragments)
-        -> DataResponseSerializer<JSON>
-    {
-        return DataResponseSerializer { _, response, data, error in
-			return Request.serializeResponseSwiftyJSON(options: options, response: response, data: data, error: error)
-        }
-    }
-
     /// Adds a handler to be called once the request has finished.
     ///
-    /// - parameter options: The JSON serialization reading options. Defaults to `.allowFragments`.
-    /// - parameter completionHandler: A closure to be executed once the request has finished.
+    /// - Parameters:
+    ///   - queue:             The queue on which the completion handler is dispatched. `.main` by default.
+    ///   - options:           The JSON serialization reading options. `.allowFragments` by default.
+    ///   - completionHandler: A closure to be executed once the request has finished.
     ///
-    /// - returns: The request.
+    /// - Returns:             The request.
     @discardableResult
-    public func responseSwiftyJSON(
-        queue: DispatchQueue? = nil,
-        options: JSONSerialization.ReadingOptions = .allowFragments,
-        completionHandler: @escaping (DataResponse<JSON>) -> Void)
-        -> Self
+    public func responseSwiftyJSON(queue: DispatchQueue = .main,
+                                   options: JSONSerialization.ReadingOptions = .allowFragments,
+                                   completionHandler: @escaping (AFDataResponse<JSON>) -> Void) -> Self
     {
-        return response(
-            queue: queue,
-            responseSerializer: DataRequest.swiftyJSONResponseSerializer(options: options),
-            completionHandler: completionHandler
-        )
+        response(queue: queue,
+                 responseSerializer: SwiftyJSONResponseSerializer(options: options),
+                 completionHandler: completionHandler)
     }
 }
-
-private let emptyDataStatusCodes: Set<Int> = [204, 205]

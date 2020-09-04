@@ -6,18 +6,17 @@
 //  Copyright (c) 2014年 SwiftJSON. All rights reserved.
 //
 
-import XCTest
 import Alamofire
-import SwiftyJSON
 import AlamofireSwiftyJSON
+import SwiftyJSON
+import XCTest
 
 class Alamofire_SwiftyJSONTests: XCTestCase {
-    
     func testGETRequestJSONResponse() {
         let URL = "http://httpbin.org/get"
         let parameters: Parameters = ["foo": "bar"]
         let expect = expectation(description: "responseSwiftyJSON method should work")
-        Alamofire.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
+        AF.request(URL, method: .get, parameters: parameters, encoding: URLEncoding.default)
             .validate()
             .responseSwiftyJSON { response in
                 XCTAssertNotNil(response.request, "request should not be nil")
@@ -25,7 +24,7 @@ class Alamofire_SwiftyJSONTests: XCTestCase {
                 XCTAssertNil(response.error, "result error should be nil")
                 XCTAssertEqual(response.value?["args"], SwiftyJSON.JSON(["foo": "bar"] as NSDictionary), "args should be equal")
                 expect.fulfill()
-        }
+            }
         waitForExpectations(timeout: 10.0, handler: nil)
     }
 }
